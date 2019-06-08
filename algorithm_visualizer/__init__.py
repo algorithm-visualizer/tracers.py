@@ -4,9 +4,12 @@ import os
 
 from algorithm_visualizer import randomize as Randomize
 from algorithm_visualizer.commander import Commander
-from algorithm_visualizer.tracer import Tracer
+from algorithm_visualizer.tracers import *
 
-__all__ = ("Randomize", "Commander", "Tracer")
+__all__ = (
+    "Randomize", "Commander",
+    "Array1DTracer", "Array2DTracer", "ChartTracer", "LogTracer", "Tracer"
+)
 
 
 @atexit.register
