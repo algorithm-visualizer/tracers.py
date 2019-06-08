@@ -1,4 +1,4 @@
-from tracer import Commander
+from algorithm_visualizer import Commander
 
 
 class Tracer(Commander):

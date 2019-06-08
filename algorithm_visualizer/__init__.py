@@ -2,9 +2,9 @@ import atexit
 import json
 import os
 
-from tracer import Randomize
-from tracer.Commander import Commander
-from tracer.Tracer import Tracer
+from algorithm_visualizer import randomize as Randomize
+from algorithm_visualizer.commander import Commander
+from algorithm_visualizer.tracer import Tracer
 
 __all__ = ("Randomize", "Commander", "Tracer")
 
