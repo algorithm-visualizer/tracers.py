@@ -9,7 +9,7 @@ from algorithm_visualizer.tracers import *
 
 __all__ = (
     "Randomize", "Commander",
-    "Array1DTracer", "Array2DTracer", "ChartTracer", "LogTracer", "Tracer"
+    "Array1DTracer", "Array2DTracer", "ChartTracer", "GraphTracer", "LogTracer", "Tracer"
 )
 
 # Types which are serializable by the default JSONEncoder
