@@ -1,9 +1,9 @@
 import abc
 import random
 import string
-from typing import List, NoReturn, Sequence, Union
+from typing import List, NoReturn, Sequence
 
-_Number = Union[float, int]
+from algorithm_visualizer import _Number
 
 
 class Randomizer(metaclass=abc.ABCMeta):

@@ -1,14 +1,14 @@
 import string
 from typing import Any, Dict, List, Optional
 
-from algorithm_visualizer import randomize
+from algorithm_visualizer import Randomize, _Serializable
 
 _MAX_COMMANDS = 1000000
 _MAX_OBJECTS = 100
 
 
 class Commander:
-    _keyRandomizer = randomize.String(8, string.ascii_lowercase + string.digits)
+    _keyRandomizer = Randomize.String(8, string.ascii_lowercase + string.digits)
     _objectCount = 0
     commands: List[Dict[str, Any]] = []
 
@@ -18,7 +18,7 @@ class Commander:
         self.command(self.__class__.__name__, *args)
 
     @classmethod
-    def _command(cls, key: Optional[str], method: str, *args):
+    def _command(cls, key: Optional[str], method: str, *args: _Serializable):
         cmd = {
             "key": key,
             "method": method,
