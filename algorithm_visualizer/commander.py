@@ -12,17 +12,17 @@ class Commander:
     _objectCount = 0
     commands: List[Dict[str, Any]] = []
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args):
         self._objectCount += 1
-        self.command(self.__class__.__name__, **kwargs)
+        self.command(self.__class__.__name__, *args)
 
     @classmethod
-    def command(cls, method: str, key: str = _keyRandomizer.create(), **kwargs):
+    def command(cls, method: str, *args, key: str = _keyRandomizer.create()):
         cmd = {
             "key": key,
-            "method": method
+            "method": method,
+            "args": args
         }
-        cmd.update(kwargs)
         cls.commands.append(cmd)
 
         if len(cls.commands) > _MAX_COMMANDS:

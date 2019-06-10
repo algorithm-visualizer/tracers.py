@@ -3,11 +3,14 @@ from algorithm_visualizer import Commander
 
 class Tracer(Commander):
     def __init__(self, title: str = None):
-        super().__init__(title=title or {})
+        if title is None:
+            super().__init__()
+        else:
+            super().__init__(title)
 
     @classmethod
     def delay(cls, lineNumber: int = None):
-        cls.command("delay", lineNumber=lineNumber or {})
+        cls.command("delay", lineNumber)
 
     @classmethod
     def set(cls):
