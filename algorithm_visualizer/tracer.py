@@ -10,12 +10,13 @@ class Tracer(Commander):
 
     @classmethod
     def delay(cls, lineNumber: int = None):
-        cls.command("delay", lineNumber)
+        if lineNumber is None:
+            cls._command(None, "delay")
+        else:
+            cls._command(None, "delay", lineNumber)
 
-    @classmethod
-    def set(cls):
-        cls.command("set")
+    def set(self):
+        self.command("set")
 
-    @classmethod
-    def reset(cls):
-        cls.command("reset")
+    def reset(self):
+        self.command("reset")
