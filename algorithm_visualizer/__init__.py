@@ -5,11 +5,13 @@ from typing import Union
 
 from algorithm_visualizer import randomize as Randomize
 from algorithm_visualizer.commander import Commander
+from algorithm_visualizer.layouts import *
 from algorithm_visualizer.tracers import *
 
 __all__ = (
     "Randomize", "Commander",
-    "Array1DTracer", "Array2DTracer", "ChartTracer", "GraphTracer", "LogTracer", "Tracer"
+    "Array1DTracer", "Array2DTracer", "ChartTracer", "GraphTracer", "LogTracer", "Tracer",
+    "HorizontalLayout", "Layout", "VerticalLayout"
 )
 
 # Types which are serializable by the default JSONEncoder
