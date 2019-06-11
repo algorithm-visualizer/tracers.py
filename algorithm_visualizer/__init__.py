@@ -16,16 +16,18 @@ __all__ = (
 
 @atexit.register
 def execute():
+    commands = json.dumps(Commander.commands, separators=(",", ":"))
     if os.getenv("ALGORITHM_VISUALIZER"):
         with open("visualization.json", "w", encoding="UTF-8") as file:
-            json.dump(Commander.commands, file)
+            file.write(commands)
     else:
         import requests
         import webbrowser
 
         response = requests.post(
             "https://algorithm-visualizer.org/api/visualizations",
-            json=Commander.commands
+            headers={"Content-type": "application/json"},
+            data=commands
         )
 
         if response.status_code == 200:
