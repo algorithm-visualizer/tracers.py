@@ -1,19 +1,17 @@
 from typing import List, Optional
 
 from .log import LogTracer, Tracer
-from algorithm_visualizer.types import Number, Serializable
+from algorithm_visualizer.types import Number, Serializable, UNDEFINED
 
 
 class GraphTracer(Tracer):
-    def set(self, array2d: List[List[Serializable]] = None):
-        if array2d is None:
-            array2d = []
+    def set(self, array2d: List[List[Serializable]] = UNDEFINED):
         self.command("set", array2d)
 
-    def directed(self, isDirected: bool = True):
+    def directed(self, isDirected: bool = UNDEFINED):
         self.command("directed", isDirected)
 
-    def weighted(self, isWeighted: bool = True):
+    def weighted(self, isWeighted: bool = UNDEFINED):
         self.command("weighted", isWeighted)
         return self
 
@@ -21,7 +19,7 @@ class GraphTracer(Tracer):
         self.command("layoutCircle")
         return self
 
-    def layoutTree(self, root: Any = 0, sorted: bool = False):
+    def layoutTree(self, root: Serializable = UNDEFINED, sorted: bool = UNDEFINED):
         self.command("layoutTree", root, sorted)
         return self
 
@@ -32,7 +30,7 @@ class GraphTracer(Tracer):
     def addNode(
         self,
         id: Serializable,
-        weight: Optional[Number] = None,
+        weight: Optional[Number] = UNDEFINED,
         x: int = 0,
         y: int = 0,
         visitedCount: int = 0,
@@ -43,11 +41,11 @@ class GraphTracer(Tracer):
     def updateNode(
         self,
         id: Serializable,
-        weight: Optional[Number] = None,
-        x: int = 0,
-        y: int = 0,
-        visitedCount: int = 0,
-        selectedCount: int = 0
+        weight: Optional[Number] = UNDEFINED,
+        x: int = UNDEFINED,
+        y: int = UNDEFINED,
+        visitedCount: int = UNDEFINED,
+        selectedCount: int = UNDEFINED
     ):
         self.command("updateNode", id, weight, x, y, visitedCount, selectedCount)
 
@@ -58,9 +56,9 @@ class GraphTracer(Tracer):
         self,
         source: Serializable,
         target: Serializable,
-        weight: Optional[Number] = None,
-        visitedCount: int = 0,
-        selectedCount: int = 0
+        weight: Optional[Number] = UNDEFINED,
+        visitedCount: int = UNDEFINED,
+        selectedCount: int = UNDEFINED
     ):
         self.command("addEdge", source, target, weight, visitedCount, selectedCount)
 
@@ -68,9 +66,9 @@ class GraphTracer(Tracer):
         self,
         source: Serializable,
         target: Serializable,
-        weight: Optional[Number] = None,
-        visitedCount: int = 0,
-        selectedCount: int = 0
+        weight: Optional[Number] = UNDEFINED,
+        visitedCount: int = UNDEFINED,
+        selectedCount: int = UNDEFINED
     ):
         self.command("updateEdge", source, target, weight, visitedCount, selectedCount)
 
@@ -80,23 +78,23 @@ class GraphTracer(Tracer):
     def visit(
         self,
         target: Serializable,
-        source: Serializable = None,
-        weight: Optional[Number] = None
+        source: Serializable = UNDEFINED,
+        weight: Optional[Number] = UNDEFINED
     ):
         self.command("visit", target, source, weight)
 
     def leave(
         self,
         target: Serializable,
-        source: Serializable = None,
-        weight: Optional[Number] = None
+        source: Serializable = UNDEFINED,
+        weight: Optional[Number] = UNDEFINED
     ):
         self.command("leave", target, source, weight)
 
-    def select(self, target: Serializable, source: Serializable = None):
+    def select(self, target: Serializable, source: Serializable = UNDEFINED):
         self.command("select", target, source)
 
-    def deselect(self, target: Serializable, source: Serializable = None):
+    def deselect(self, target: Serializable, source: Serializable = UNDEFINED):
         self.command("deselect", target, source)
 
     def log(self, log: LogTracer):

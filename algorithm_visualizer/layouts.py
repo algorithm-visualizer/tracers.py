@@ -1,6 +1,7 @@
 from typing import List
 
 from algorithm_visualizer import Commander
+from .types import UNDEFINED
 
 
 class Layout(Commander):
@@ -11,11 +12,8 @@ class Layout(Commander):
     def setRoot(cls, child: Commander):
         cls._command(None, "setRoot", child.key)
 
-    def add(self, child: Commander, index: int = None):
-        if index is None:
-            self.command("add", child.key)
-        else:
-            self.command("add", child.key, index)
+    def add(self, child: Commander, index: int = UNDEFINED):
+        self.command("add", child.key, index)
 
     def remove(self, child: Commander):
         self.command("remove", child.key)

@@ -1,8 +1,8 @@
 import string
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from algorithm_visualizer import Randomize
-from algorithm_visualizer.types import Serializable
+from algorithm_visualizer.types import Serializable, Undefined
 
 _MAX_COMMANDS = 1000000
 _MAX_OBJECTS = 100
@@ -19,11 +19,11 @@ class Commander:
         self.command(self.__class__.__name__, *args)
 
     @classmethod
-    def _command(cls, key: Optional[str], method: str, *args: Serializable):
+    def _command(cls, key: Optional[str], method: str, *args: Union[Serializable, Undefined]):
         cmd = {
             "key": key,
             "method": method,
-            "args": args
+            "args": tuple(a for a in args if not isinstance(a, Undefined))
         }
         cls.commands.append(cmd)
 

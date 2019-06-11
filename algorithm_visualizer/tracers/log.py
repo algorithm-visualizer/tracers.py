@@ -1,9 +1,9 @@
 from .tracer import Tracer
-from algorithm_visualizer.types import Serializable
+from algorithm_visualizer.types import Serializable, UNDEFINED
 
 
 class LogTracer(Tracer):
-    def set(self, log: Serializable):
+    def set(self, log: Serializable = UNDEFINED):
         self.command("set", log)
 
     def print(self, message: Serializable):
