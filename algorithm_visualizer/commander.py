@@ -1,3 +1,4 @@
+import json
 import string
 from typing import Any, Dict, List, Optional, Union
 
@@ -20,10 +21,11 @@ class Commander:
 
     @classmethod
     def _command(cls, key: Optional[str], method: str, *args: Union[Serializable, Undefined]):
+        args = tuple(a for a in args if not isinstance(a, Undefined))
         cmd = {
             "key": key,
             "method": method,
-            "args": tuple(a for a in args if not isinstance(a, Undefined))
+            "args": json.loads(json.dumps(args))
         }
         cls.commands.append(cmd)
 
