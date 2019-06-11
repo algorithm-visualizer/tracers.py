@@ -1,36 +1,34 @@
-from typing import List, Optional
-
 from .log import LogTracer, Tracer
-from algorithm_visualizer.types import Number, Serializable, UNDEFINED
+from algorithm_visualizer.types import Number, Serializable, SerializableSequence, UNDEFINED
 
 
 class GraphTracer(Tracer):
-    def set(self, array2d: List[List[Serializable]] = UNDEFINED):
+    def set(self, array2d: SerializableSequence[SerializableSequence[Serializable]] = UNDEFINED):
         self.command("set", array2d)
 
     def directed(self, isDirected: bool = UNDEFINED):
         self.command("directed", isDirected)
 
-    def weighted(self, isWeighted: bool = UNDEFINED):
+    def weighted(self, isWeighted: bool = UNDEFINED) -> "GraphTracer":
         self.command("weighted", isWeighted)
         return self
 
-    def layoutCircle(self):
+    def layoutCircle(self) -> "GraphTracer":
         self.command("layoutCircle")
         return self
 
-    def layoutTree(self, root: Serializable = UNDEFINED, sorted: bool = UNDEFINED):
+    def layoutTree(self, root: Serializable = UNDEFINED, sorted: bool = UNDEFINED) -> "GraphTracer":
         self.command("layoutTree", root, sorted)
         return self
 
-    def layoutRandom(self):
+    def layoutRandom(self) -> "GraphTracer":
         self.command("layoutRandom")
         return self
 
     def addNode(
         self,
         id: Serializable,
-        weight: Optional[Number] = UNDEFINED,
+        weight: Number = UNDEFINED,
         x: int = 0,
         y: int = 0,
         visitedCount: int = 0,
@@ -41,7 +39,7 @@ class GraphTracer(Tracer):
     def updateNode(
         self,
         id: Serializable,
-        weight: Optional[Number] = UNDEFINED,
+        weight: Number = UNDEFINED,
         x: int = UNDEFINED,
         y: int = UNDEFINED,
         visitedCount: int = UNDEFINED,
@@ -56,7 +54,7 @@ class GraphTracer(Tracer):
         self,
         source: Serializable,
         target: Serializable,
-        weight: Optional[Number] = UNDEFINED,
+        weight: Number = UNDEFINED,
         visitedCount: int = UNDEFINED,
         selectedCount: int = UNDEFINED
     ):
@@ -66,7 +64,7 @@ class GraphTracer(Tracer):
         self,
         source: Serializable,
         target: Serializable,
-        weight: Optional[Number] = UNDEFINED,
+        weight: Number = UNDEFINED,
         visitedCount: int = UNDEFINED,
         selectedCount: int = UNDEFINED
     ):
@@ -79,7 +77,7 @@ class GraphTracer(Tracer):
         self,
         target: Serializable,
         source: Serializable = UNDEFINED,
-        weight: Optional[Number] = UNDEFINED
+        weight: Number = UNDEFINED
     ):
         self.command("visit", target, source, weight)
 
@@ -87,7 +85,7 @@ class GraphTracer(Tracer):
         self,
         target: Serializable,
         source: Serializable = UNDEFINED,
-        weight: Optional[Number] = UNDEFINED
+        weight: Number = UNDEFINED
     ):
         self.command("leave", target, source, weight)
 

@@ -1,12 +1,10 @@
-from typing import List
-
 from . import chart
 from .array2d import Array2DTracer
-from algorithm_visualizer.types import Serializable, UNDEFINED
+from algorithm_visualizer.types import Serializable, SerializableSequence, UNDEFINED
 
 
 class Array1DTracer(Array2DTracer):
-    def set(self, array1d: List[Serializable] = UNDEFINED):
+    def set(self, array1d: SerializableSequence[Serializable] = UNDEFINED):
         self.command("set", array1d)
 
     def patch(self, x: int, v: Serializable = UNDEFINED):

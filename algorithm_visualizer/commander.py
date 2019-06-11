@@ -1,6 +1,6 @@
 import json
 import string
-from typing import Any, Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union
 
 from algorithm_visualizer import Randomize
 from algorithm_visualizer.types import Serializable, Undefined
@@ -12,9 +12,9 @@ _MAX_OBJECTS = 100
 class Commander:
     _keyRandomizer = Randomize.String(8, string.ascii_lowercase + string.digits)
     _objectCount = 0
-    commands: List[Dict[str, Any]] = []
+    commands: List[Dict[str, Serializable]] = []
 
-    def __init__(self, *args):
+    def __init__(self, *args: Serializable):
         self._objectCount += 1
         self.key = self._keyRandomizer.create()
         self.command(self.__class__.__name__, *args)

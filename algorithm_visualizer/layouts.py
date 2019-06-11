@@ -1,12 +1,12 @@
-from typing import List
+from typing import Iterable
 
 from algorithm_visualizer import Commander
 from .types import UNDEFINED
 
 
 class Layout(Commander):
-    def __init__(self, children: List[Commander]):
-        super().__init__([c.key for c in children])
+    def __init__(self, children: Iterable[Commander]):
+        super().__init__(tuple(c.key for c in children))
 
     @classmethod
     def setRoot(cls, child: Commander):
