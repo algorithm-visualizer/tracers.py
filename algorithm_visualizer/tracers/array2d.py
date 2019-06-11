@@ -1,14 +1,16 @@
 from typing import List
 
-from algorithm_visualizer import Tracer, _Serializable
+from .tracer import Tracer
+from algorithm_visualizer.types import Serializable
+
 
 class Array2DTracer(Tracer):
-    def set(self, array2d: List[List[_Serializable]] = None):
+    def set(self, array2d: List[List[Serializable]] = None):
         if array2d is None:
             array2d = []
         self.command("set", array2d)
 
-    def patch(self, x: int, y: int, v: _Serializable = None):
+    def patch(self, x: int, y: int, v: Serializable = None):
         self.command("patch", x, y, v)
 
     def depatch(self, x: int, y: int):

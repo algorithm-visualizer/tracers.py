@@ -1,22 +1,17 @@
 import atexit
 import json
 import os
-from typing import Union
 
-from algorithm_visualizer import randomize as Randomize
-from algorithm_visualizer.commander import Commander
-from algorithm_visualizer.layouts import *
-from algorithm_visualizer.tracers import *
+from . import randomize as Randomize
+from .commander import Commander
+from .layouts import *
+from .tracers import *
 
 __all__ = (
     "Randomize", "Commander",
     "Array1DTracer", "Array2DTracer", "ChartTracer", "GraphTracer", "LogTracer", "Tracer",
     "HorizontalLayout", "Layout", "VerticalLayout"
 )
-
-# Types which are serializable by the default JSONEncoder
-_Serializable = Union[dict, list, str, int, float, bool, None]
-_Number = Union[int, float]
 
 
 @atexit.register

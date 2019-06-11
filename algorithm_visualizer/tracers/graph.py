@@ -1,9 +1,11 @@
-from typing import Any, List, Optional
+from typing import List, Optional
 
-from algorithm_visualizer import LogTracer, Tracer, _Number, _Serializable
+from .log import LogTracer, Tracer
+from algorithm_visualizer.types import Number, Serializable
+
 
 class GraphTracer(Tracer):
-    def set(self, array2d: List[List[_Serializable]] = None):
+    def set(self, array2d: List[List[Serializable]] = None):
         if array2d is None:
             array2d = []
         self.command("set", array2d)
@@ -29,8 +31,8 @@ class GraphTracer(Tracer):
 
     def addNode(
         self,
-        id: _Serializable,
-        weight: Optional[_Number] = None,
+        id: Serializable,
+        weight: Optional[Number] = None,
         x: int = 0,
         y: int = 0,
         visitedCount: int = 0,
@@ -40,8 +42,8 @@ class GraphTracer(Tracer):
 
     def updateNode(
         self,
-        id: _Serializable,
-        weight: Optional[_Number] = None,
+        id: Serializable,
+        weight: Optional[Number] = None,
         x: int = 0,
         y: int = 0,
         visitedCount: int = 0,
@@ -49,14 +51,14 @@ class GraphTracer(Tracer):
     ):
         self.command("updateNode", id, weight, x, y, visitedCount, selectedCount)
 
-    def removeNode(self, id: _Serializable):
+    def removeNode(self, id: Serializable):
         self.command("removeNode", id)
 
     def addEdge(
         self,
-        source: _Serializable,
-        target: _Serializable,
-        weight: Optional[_Number] = None,
+        source: Serializable,
+        target: Serializable,
+        weight: Optional[Number] = None,
         visitedCount: int = 0,
         selectedCount: int = 0
     ):
@@ -64,37 +66,37 @@ class GraphTracer(Tracer):
 
     def updateEdge(
         self,
-        source: _Serializable,
-        target: _Serializable,
-        weight: Optional[_Number] = None,
+        source: Serializable,
+        target: Serializable,
+        weight: Optional[Number] = None,
         visitedCount: int = 0,
         selectedCount: int = 0
     ):
         self.command("updateEdge", source, target, weight, visitedCount, selectedCount)
 
-    def removeEdge(self, source: _Serializable, target: _Serializable):
+    def removeEdge(self, source: Serializable, target: Serializable):
         self.command("removeEdge", source, target)
 
     def visit(
         self,
-        target: _Serializable,
-        source: _Serializable = None,
-        weight: Optional[_Number] = None
+        target: Serializable,
+        source: Serializable = None,
+        weight: Optional[Number] = None
     ):
         self.command("visit", target, source, weight)
 
     def leave(
         self,
-        target: _Serializable,
-        source: _Serializable = None,
-        weight: Optional[_Number] = None
+        target: Serializable,
+        source: Serializable = None,
+        weight: Optional[Number] = None
     ):
         self.command("leave", target, source, weight)
 
-    def select(self, target: _Serializable, source: _Serializable = None):
+    def select(self, target: Serializable, source: Serializable = None):
         self.command("select", target, source)
 
-    def deselect(self, target: _Serializable, source: _Serializable = None):
+    def deselect(self, target: Serializable, source: Serializable = None):
         self.command("deselect", target, source)
 
     def log(self, log: LogTracer):

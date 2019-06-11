@@ -3,16 +3,16 @@ import random
 import string
 from typing import List, NoReturn, Sequence
 
-from algorithm_visualizer import _Number
+from algorithm_visualizer.types import Number
 
 
-class Randomizer(metaclass=abc.ABCMeta):
+class _Randomizer(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def create(self) -> NoReturn:
         raise NotImplementedError
 
 
-class Integer(Randomizer):
+class Integer(_Randomizer):
     def __init__(self, min: int = 1, max: int = 9):
         self._min = min
         self._max = max
@@ -21,8 +21,8 @@ class Integer(Randomizer):
         return random.randint(self._min, self._max)
 
 
-class Double(Randomizer):
-    def __init__(self, min: _Number = 0, max: _Number = 1):
+class Double(_Randomizer):
+    def __init__(self, min: Number = 0, max: Number = 1):
         self._min = min
         self._max = max
 
@@ -30,7 +30,7 @@ class Double(Randomizer):
         return random.uniform(self._min, self._max)
 
 
-class String(Randomizer):
+class String(_Randomizer):
     def __init__(self, length: int = 16, letters: Sequence[str] = string.ascii_lowercase):
         self._length = length
         self._letters = letters
@@ -40,8 +40,8 @@ class String(Randomizer):
         return "".join(text)
 
 
-class Array1D(Randomizer):
-    def __init__(self, N: int = 10, randomizer: Randomizer = Integer()):
+class Array1D(_Randomizer):
+    def __init__(self, N: int = 10, randomizer: _Randomizer = Integer()):
         self._N = N
         self._randomizer = randomizer
         self._sorted = False
@@ -59,7 +59,7 @@ class Array1D(Randomizer):
 
 
 class Array2D(Array1D):
-    def __init__(self, N: int = 10, M: int = 10, randomizer: Randomizer = Integer()):
+    def __init__(self, N: int = 10, M: int = 10, randomizer: _Randomizer = Integer()):
         super().__init__(N, randomizer)
         self._M = M
 
@@ -71,8 +71,8 @@ class Array2D(Array1D):
         return [super().create() for _ in range(self._N)]
 
 
-class Graph(Randomizer):
-    def __init__(self, N: int = 5, ratio: _Number = 0.3, randomizer: Randomizer = Integer()):
+class Graph(_Randomizer):
+    def __init__(self, N: int = 5, ratio: Number = 0.3, randomizer: _Randomizer = Integer()):
         self._N = N
         self._ratio = ratio
         self._randomizer = randomizer
