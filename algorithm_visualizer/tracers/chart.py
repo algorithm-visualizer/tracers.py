@@ -1,4 +1,4 @@
-from algorithm_visualizer import Tracer
+from algorithm_visualizer import Array1DTracer
 
-class ChartTracer(Tracer):
+class ChartTracer(Array1DTracer):
     pass
